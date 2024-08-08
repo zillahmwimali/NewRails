@@ -1,0 +1,25 @@
+
+
+<%= form_with model: [ @article, @article.comments.build,  ], local: true do |form| %>
+  <div class="bg-white p-4 rounded-lg mt-4">
+    <h2 class="font-semibold text-gray-800 mt-8 mb-4">Leave a comment:</h2>
+    <div class="mb-3">
+      <%= form.label :commenter, "Your Name", class: "block text-gray-700 font-medium mb-1" %>
+      <%= form.text_field :commenter, placeholder: "Enter your name", class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :body, "Your Comment", class: "block text-gray-700 font-medium mb-1" %>
+      <%= form.text_area :body, placeholder: "Write a comment...", rows: 3, class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :status, "Status", class: "block text-gray-700 font-medium mb-1" %>
+<%= form.select :status, Visible::VALID_STATUSES, {selected: 'public'}, class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-700 appearance-none" %>
+    </div>
+    
+    <div class="text-right">
+      <%= form.submit 'Post', class: "bg-gray-400 hover:bg-green-400 text-white py-2 px-4 rounded-full text-xs transition duration-300 ease-in-out" %>
+
+      </div>
+
+  </div>
+<% end %>
