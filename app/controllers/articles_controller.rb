@@ -4,8 +4,17 @@ class ArticlesController < ApplicationController
   
 
   def index
-    @articles = Article.all
+    
+    @categories = Category.all
+
+    if params[:category_id]
+      @category = Category.find(params[:category_id])
+      @articles = @category.articles
+    else
+      @articles = Article.all
+    end
   end
+  
 
   def show
     @article = Article.find(params[:id])
@@ -49,12 +58,14 @@ class ArticlesController < ApplicationController
 
   private
     def article_params
-      params.require(:article).permit(:title, :body, :image, :status)
+      params.require(:article).permit(:title, :body, :image, :status, :category_id)
     end
 
     def increment_views
       @article = Article.find(params[:id])
       @article.increment!(:views_count)
     end
+
+    
 
   end  
